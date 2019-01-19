@@ -44,9 +44,8 @@ void SCAN(int head,char * dir){
 		}else if (buffer_scan[i-1]==0 || buffer_scan[i-1]==199){
 			total+=abs(buffer_scan[i]-buffer_scan[i-1]);
 		}
-	
-
 	}
+	
 	printf("SCAN - servicing request: %d\n", buffer_scan[8]);
 	printf("SCAN - Total head movements = %d\n\n", total);
 }
@@ -70,8 +69,8 @@ void SCAN_left(){
 	for (j=1;j>=0;j--){
 		t1[j]=temp_sort[b];
 		b++;
-
 	}
+	
 	t1[2]=0;
 
 	while (c!=3){
@@ -103,9 +102,9 @@ void SCAN_right(){
 		t1[j]=temp_sort[a];
 		a++;
 	}
+	
 	t1[6]=199;
 	
-
 	for (j=1;j>=0;j--){
 		t2[j]=temp_sort[b];
 		b++;
@@ -133,7 +132,6 @@ void LOOK(int head,char * dir){
 
 	sort(sorted,N);
 	
-
 	if (strcmp(dir,"LEFT")==0){
 		LOOK_left();
 	}else if (strcmp(dir,"RIGHT")==0){
@@ -146,13 +144,14 @@ void LOOK(int head,char * dir){
 		total+=abs(buffer[i]-buffer[i-1]);
 
 	}
+	
 	printf("LOOK - servicing request: %d\n", buffer[7]);
 	printf("LOOK - Total head movements = %d\n", total);
-
 }
 
 void LOOK_left(){
 	int i;
+	
 	for (i=0;i<N;i++){
 		buffer[i]=sorted[i];
 	}
@@ -164,13 +163,16 @@ void LOOK_right(){
 	while(sorted[j]<head){
 		j++;
 	}
+	
 	int i;
 	int ind=2;
+	
 	for(i=0;i<N;i++){
 		buffer[i]=sorted[ind];
 		ind=(ind+1)%N;
 
 	}
+	
 	swap(&buffer[6],&buffer[7]);
 }
 
@@ -189,8 +191,10 @@ void SSTF(int head){
 		temp[i]=requests[c];
 		c++;
 	}
+	
 	buffer_sstf[counter]=temp[0];
 	counter++;
+	
 	for(i=0;i<N;i++){
  		min=INT_MAX;
 
@@ -232,8 +236,6 @@ int main(int argc, char *argv[]) {
 	SCAN(head, direction);
 	LOOK(head,direction);
 
-	
-
 	return 0;
 }
 
@@ -252,10 +254,11 @@ void FCFS(int head){
 }
 void sort(int a[], int n){
 	int i,temp,j;
+	
   	for (i=1;i<n;i++){
        		temp=a[i];
        		j=i-1;
-
+		
        		while(a[j]>temp && j>=0){
            		a[j+1]=a[j];
            		j-=1;
@@ -269,6 +272,4 @@ void swap(int *i,int *j){
 	int temp=*i;
 	*i=*j;
 	*j=temp;
-
 }
-
